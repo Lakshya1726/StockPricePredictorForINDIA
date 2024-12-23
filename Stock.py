@@ -50,7 +50,7 @@ def predict_stock_prices(data, days):
 
     # Predict future prices
     future_days = np.arange(len(data), len(data) + days).reshape(-1, 1)
-    future_prices = model.predict(np.hstack([future_days, np.zeros((days, X.shape[1] - 1))]))
+    future_prices = model.predict(future_days).flatten()  # Ensure 1-dimensional output
 
     # Evaluate the model
     y_pred = model.predict(X_test)
